@@ -17,6 +17,8 @@ void main() {
       .listen(onClickConfirm); // login check
 }
 
+
+//------------------------------ Onclick event handlers
 void loginCheck(MouseEvent event) {
   String emailInput = (querySelector('#email') as InputElement).value;
   String pwdInput = (querySelector('#pwd') as InputElement).value;
@@ -26,8 +28,9 @@ void loginCheck(MouseEvent event) {
     onCloseModal(event); // close modal
     // Todo list rendering
     querySelector('#greeting').text = 'Hello ${user.get_name}, Things to do:';
+
     todoList = querySelector('#todolist');
-    thingsTodo().forEach(addTodoItem);
+    user.get_todo_list;
   } else {
     outputInfo.classes.add("error");
     outputInfo.text = "Email or password is wrong";
@@ -45,6 +48,7 @@ void onClickConfirm(MouseEvent event) {
   loginCheck(event);
 }
 
+//------------------------------ Todo list -------------------------------------
 Iterable<String> thingsTodo() sync* {
   var actions = ['Brushing teeth', 'Having breakfast', 'Go to school'];
 
@@ -58,11 +62,13 @@ void addTodoItem(String item) {
 
   var listElement = LIElement();
   listElement.text = item;
+
   todoList.children.add(listElement);
 }
 
 UListElement todoList;
 
+//------------------------------ User class ------------------------------------
 class User {
   //field
   String name;
@@ -77,6 +83,10 @@ class User {
   }
 
   //getters
+  void get get_todo_list {
+    thingsTodo().forEach(addTodoItem);
+  }
+
   String get get_email {
     return this.email;
   }
