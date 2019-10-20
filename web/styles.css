@@ -22,7 +22,7 @@ html, body {
     display: flex;
 }
 
-.login-form input {
+.login-form input, .todo-box input {
     border: 1px solid #e96e50;
     margin: 0;
     width: 142px;
@@ -51,6 +51,15 @@ html, body {
     display: block;
     margin-top: 20px;
     color: red;
+    font-size: 12px;
+}
+
+#to-do-input-error {
+    text-align: center;
+    margin-top: 15px;
+    color: white;
+    font-weight: bold;
+    display: block;
     font-size: 12px;
 }
 
@@ -188,8 +197,13 @@ html, body {
     background-color: #e96e50;
 }
 
-.button:hover {
+.button.confirm:hover {
     background-color: #e96e10;
+}
+
+.button.add:hover {
+    background-color: #cccccc;
+    color: white;
 }
 
 .todo-box-wrapper {
@@ -206,10 +220,24 @@ html, body {
     margin-top: 20vh;
 }
 
+#greeting {
+    margin-bottom: 20px;
+}
+
 #todolist {
     list-style-type: none;
     margin: 0;
     padding: 0;
+}
+
+.add-todo-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.todo-box input {
+    height: 31px;
+    border: 1px solid rgb(186, 186, 186);
 }
 
 #todolist li {
