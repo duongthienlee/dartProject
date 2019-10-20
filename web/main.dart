@@ -12,7 +12,6 @@ void main() {
   modal_content.classes.add("open");
 
   // modal onClick handlers
-  modal_overlay.onClick.listen(onCloseModal);
   querySelector('#modal-btn-confirm')
       .onClick
       .listen(onClickConfirm); // login check
@@ -23,14 +22,12 @@ void loginCheck(MouseEvent event) {
   String pwdInput = (querySelector('#pwd') as InputElement).value;
   var outputInfo = querySelector('.login-info');
 
-  print("user.get_pwd: ${user.get_pwd}");
-  print("pwdInput: ${pwdInput}");
-
   if (emailInput == user.get_email && pwdInput == user.get_pwd) {
-    outputInfo.classes.add("success");
-    outputInfo.text = 'Hello ' + user.get_name;
-
-    // onCloseModal(event);
+    onCloseModal(event); // close modal
+    // Todo list rendering
+    querySelector('#greeting').text = 'Hello ${user.get_name}, Things to do:';
+    todoList = querySelector('#todolist');
+    thingsTodo().forEach(addTodoItem);
   } else {
     outputInfo.classes.add("error");
     outputInfo.text = "Email or password is wrong";
@@ -48,27 +45,23 @@ void onClickConfirm(MouseEvent event) {
   loginCheck(event);
 }
 
-// usage of class, setters/getters, List, String, For loop
-class ToDoList {
-  //field
-  var todo = List();
+Iterable<String> thingsTodo() sync* {
+  var actions = ['Brushing teeth', 'Having breakfast', 'Go to school'];
 
-  //getters
-  String get list_todo {
-    String result = "Todos List:\n";
-    for (var i = 0; i < todo.length; i++) {
-      String br =
-          i != (todo.length - 1) ? "\n" : ""; // Add break line except last item
-      result += "${todo[i]}${br}";
-    }
-    return result;
-  }
-
-  //setters
-  set add_todo(String todo) {
-    this.todo.add(todo);
+  for (var action in actions) {
+    yield '$action ';
   }
 }
+
+void addTodoItem(String item) {
+  print(item);
+
+  var listElement = LIElement();
+  listElement.text = item;
+  todoList.children.add(listElement);
+}
+
+UListElement todoList;
 
 class User {
   //field

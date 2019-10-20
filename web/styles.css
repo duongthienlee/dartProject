@@ -46,12 +46,7 @@ html, body {
     text-align: center;
     display: none;
 }
-.login-info.success{
-    display: block;
-    margin-top: 10px;
-    color: #e96e50;
-    font-size: 14px;
-}
+
 .login-info.error {
     display: block;
     margin-top: 20px;
@@ -197,5 +192,34 @@ html, body {
     background-color: #e96e10;
 }
 
+.todo-box-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
+.todo-box {
+    width: 300px;
+    padding: 30px;
+    background-color: #e96e50;
+    color: white;
+    margin-top: 20vh;
+}
+
+#todolist {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#todolist li {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: black;
+    padding-left: 10px;
+    border: 1px solid grey;
+    margin-top: 10px;
+}
 
